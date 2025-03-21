@@ -3,17 +3,22 @@ import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
 import { getProducts }  from "./services/productService";
+import Spinner from './Spinner'
+
 
 export default function App() {
-  const [size, setSize] = useState("")
-  const [products, setProducts] = useState([])
+  const [size, setSize] = useState("");
+  const [products, setProducts] = useState([]);
   // handling async code error
   const [error, setError] = useState(null);
+  // handling slow api call
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getProducts("shoes")
       .then(response => setProducts(response))
-      .catch((error)=> setError(error));
+      .catch((error)=> setError(error)) // for async code error
+      .finally(()=> setLoading(false)); // for seting loading
   }, []);
 
   function renderProduct(p) {
@@ -37,6 +42,9 @@ export default function App() {
 
 
   if(error) throw error;
+
+  if (loading) return <Spinner/>
+  
   return (
     <>
       <div className="content">
