@@ -8,7 +8,7 @@ import useFetch from './services/useFetch'
 
 export default function App() {
   const [size, setSize] = useState("");
-  const {data: products, loading, error} = useFetch('/products/category=shoes')
+  const {data: products, loading, error} = useFetch('/products?category=shoes')
 
   function renderProduct(p) {
     return (
