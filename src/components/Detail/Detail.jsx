@@ -2,12 +2,14 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../../services/useFetch';
 import Spinner from '../Spinner';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 export default function Detail(){
     const { id } = useParams()
     const {data: product, loading, error} = useFetch(`/products/${id}`)
 
     if (loading) return <Spinner/>;
+    if (!product) return <PageNotFound/>
     if (error) throw error;
 
     return (
