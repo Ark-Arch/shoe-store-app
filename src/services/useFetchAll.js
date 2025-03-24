@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export default function useFetchAll(urls) {
   const prevUrls = useRef([]);
@@ -9,12 +10,13 @@ export default function useFetchAll(urls) {
   useEffect(() => {
     // Only run if the array of URLs passed in changes
     if (areEqual(prevUrls.current, urls)) return;
+    if (!baseUrl) return; // also prevent unnessary calls
 
     prevUrls.current = urls;
 
     console.log(urls)
     const promises = urls.map((url) =>
-      fetch(url).then((response) => {
+      fetch(baseUrl+url).then((response) => {
         if (response.ok) return response.json();
         throw response;
       })
@@ -27,7 +29,7 @@ export default function useFetchAll(urls) {
         setError(e);
       })
       .finally(() => setLoading(false));
-  }, [urls]);
+  }, [urls, baseUrl]);
 
   return { data, loading, error };
 }
