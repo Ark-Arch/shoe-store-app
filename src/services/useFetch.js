@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-// const baseUrl = process.env.REACT_APP_API_BASE_URL;
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export default function useFetch (url){
       const [data, setData] = useState(null);
@@ -8,9 +8,10 @@ export default function useFetch (url){
       // handling slow api call
       const [loading, setLoading] = useState(true);
       useEffect(() => {
+        if (!baseUrl) return; // prevent unnecessary calls if baseUrl is undefined
         async function init() {
           try {
-              const response = await fetch(url);
+              const response = await fetch(baseUrl + url);
               if (response.ok) {
                 const json = await response.json()
                 setData(json)
@@ -22,7 +23,7 @@ export default function useFetch (url){
           } finally{setLoading(false)}; // for setting loading
         };
         init();
-      }, [url]);
+      }, [url, baseUrl]);
       
       return { data, error, loading }
 }
