@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 export default function Products() {
   const [size, setSize] = useState("");
   const {category} = useParams();
-  const {data: products, loading, error} = useFetch('/products?category=' + category)
+  const {data: products, loading, error} = useFetch('products?category=' + category)
 
   function renderProduct(p) {
     return (
@@ -28,7 +28,12 @@ export default function Products() {
     setSize(e.target.value)
   }
 
-  const filteredProducts = size ? products.filter((p) => p.skus.find((s) => s.size === parseInt(size))) : products;
+  console.log(products)
+  // const filteredProducts = size ? products.filter((p) => p.skus.find((s) => s.size === parseInt(size))) : products;
+
+  const filteredProducts = size 
+  ? (products || []).filter((p) => p.skus.find((s) => s.size === parseInt(size)))
+  : (products || []);
 
 
   if(error) throw error;
@@ -36,7 +41,7 @@ export default function Products() {
   if (loading) return <Spinner/>
 
   if (products.length === 0) return <PageNotFound/>
-
+  console.log(filteredProducts)
   return (
     <>
           <section id="filters">

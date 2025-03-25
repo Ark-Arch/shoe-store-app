@@ -8,7 +8,7 @@ export default function Detail({addToCart}){
     const [sku, setSku] = useState()
     const { id } = useParams()
     const navigate = useNavigate();
-    const {data: product, loading, error} = useFetch(`/products/${id}`)
+    const {data: product, loading, error} = useFetch(`products/${id}`)
 
     if (loading) return <Spinner/>;
     if (!product) return <PageNotFound/>

@@ -29,7 +29,7 @@ export default function useFetchAll(urls) {
         setError(e);
       })
       .finally(() => setLoading(false));
-  }, [urls, baseUrl]);
+  }, [urls]);
 
   return { data, loading, error };
 }
