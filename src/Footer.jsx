@@ -4,10 +4,10 @@ export default function Footer() {
   return (
     <footer>
       <p>
-        This site is created for demonstrative purposes only and does not offer
-        any real products or services.
+        This site is created solely for my learning!... It does not offer
+        any real products or services. But, maybe you can still send in a little cash. yeah?... LOL
       </p>
-      <p>&copy; Pluralsight 2020</p>
+      <p>&copy; david_agbemuko 2025</p>
     </footer>
   );
 }
