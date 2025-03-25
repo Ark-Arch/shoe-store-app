@@ -1,6 +1,18 @@
-# MANAGING STATE IN REACT
+# A MOCK PROJECT
+this application is served using firebase on https://shoe-store-mock.web.app/
+the mock server used to serve the data is deployed on vercel with https://mock-json-server-psi.vercel.app
+the endpoints include https://mock-json-server-psi.vercel.app/products
+a ci/cd pipeline is also build for this application using a github workflow
 
-I learnt the following
+- you can view the shoes available
+- you can view each shoe
+- you can also add each shoe to cart
+- and you can remove item from the cart
+
+*of course, there is still a lot to do - but i am not stopping!... lol*
+
+## MANAGING STATE IN REACT
+While building the application, i have learnt alot on state manaement in react
 ## MANAGING ROUTER STATE
 - Declare routes via <Route>
 - Declare and read dynamic URL placeholders
