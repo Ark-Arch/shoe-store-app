@@ -1,7 +1,10 @@
 import {useState, useEffect} from 'react'
-// const baseUrl = process.env.REACT_APP_API_BASE_URL;
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+console.log(`baseUrl:${baseUrl}`)
 
 export default function useFetch (url){
+      const finalUrl = baseUrl + url
+
       const [data, setData] = useState(null);
       // handling async code error
       const [error, setError] = useState(null);
@@ -10,7 +13,8 @@ export default function useFetch (url){
       useEffect(() => {
         async function init() {
           try {
-              const response = await fetch(url);
+              console.log(finalUrl)
+              const response = await fetch(finalUrl);
               if (response.ok) {
                 const json = await response.json()
                 setData(json)
@@ -22,7 +26,7 @@ export default function useFetch (url){
           } finally{setLoading(false)}; // for setting loading
         };
         init();
-      }, [url]);
+      }, [finalUrl]);
       
       return { data, error, loading }
 }

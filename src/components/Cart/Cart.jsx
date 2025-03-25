@@ -3,13 +3,13 @@ import useFetchAll from "../../services/useFetchAll";
 import Spinner from "../Spinner";
 
 export default function Cart({ cart, updateQuantity }) {
-  console.log(cart)
-  const urls = cart.map((i) => `products/${i.id}`);
-  // console.log(urls)
+  const urls = cart.map((i) => `/products/${i.id}`);
+
   const { data: products, loading, error } = useFetchAll(urls);
 
   function renderItem(itemInCart) {
     const { id, sku, quantity } = itemInCart;
+    console.log(itemInCart)
     const { price, name, image, skus } = products.find(
       (p) => p.id === parseInt(id)
     );
