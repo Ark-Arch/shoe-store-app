@@ -8,7 +8,7 @@ import Products from "./components/Products/Products";
 import Detail from './components/Detail/Detail';
 import Cart from './components/Cart/Cart';
 
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 export default function App() {
   const [cart, setCart] = useState([]);
