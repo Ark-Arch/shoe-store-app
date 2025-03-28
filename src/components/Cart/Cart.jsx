@@ -4,6 +4,7 @@ import Spinner from "../Spinner";
 
 export default function Cart({ cart, updateQuantity }) {
   const urls = cart.map((i) => `/products/${i.id}`);
+  console.log(urls)
 
   const { data: products, loading, error } = useFetchAll(urls);
 
@@ -41,12 +42,21 @@ export default function Cart({ cart, updateQuantity }) {
     );
   }
 
+  console.log(`data: ${products}`)
+  console.log(`loading: ${loading}`)
+  console.log(`error: ${error}`)
   if (loading) return <Spinner />;
   if (error) throw error;
+  
+  const numItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <section id="cart">
-      <h1>Cart</h1>
+      <h1> {numItemsInCart === 0 ? "Your cart is empty":
+        `${numItemsInCart} Item${numItemsInCart > 1 ? "s":""} in My Cart`
+        }
+
+      </h1>
       <ul>{cart.map(renderItem)}</ul>
     </section>
   );
