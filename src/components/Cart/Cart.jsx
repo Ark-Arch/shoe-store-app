@@ -42,10 +42,7 @@ export default function Cart({ cart, updateQuantity }) {
     );
   }
 
-  console.log(`data: ${products}`)
-  console.log(`loading: ${loading}`)
-  console.log(`error: ${error}`)
-  if (loading) return <Spinner />;
+  if (loading && urls.length > 0) return <Spinner />;
   if (error) throw error;
   
   const numItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
