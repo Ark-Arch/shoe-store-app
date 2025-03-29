@@ -83,3 +83,25 @@ When you update state using the useState setter function (setCart), you can pass
 1. A new value → setCart(newArray)
 2. A function → setCart((prevState) => newArray)
 
+### using useMemo()
+to optimize performance, i could save my calculations using useMemo()
+with useMemo(), the value would only be re-calculated if the dependency is changed.
+DO NOT ALSO FORGET THAT HOOKS CAN NOT BE CALLED CONDITIONALLY
+
+### lazy initializing state
+how do i store my data so that it persists even during page reloads.
+#### Web storage
+- cookie
+- localStorage
+- sessionStorage
+- IndexedDb
+- Cache Storage
+
+Advantages
+- local, simple, fast, works offline
+Disadvantages
+- limited storage, localstorage block I/O, tied to single browser, security risk
+
+##### local storage
+setItem, getItem, removeItem
+**nullish coalescing operator**

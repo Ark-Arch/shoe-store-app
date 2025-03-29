@@ -4,13 +4,11 @@ import Spinner from "../Spinner";
 
 export default function Cart({ cart, updateQuantity }) {
   const urls = cart.map((i) => `/products/${i.id}`);
-  console.log(urls)
 
   const { data: products, loading, error } = useFetchAll(urls);
 
   function renderItem(itemInCart) {
     const { id, sku, quantity } = itemInCart;
-    console.log(itemInCart)
     const { price, name, image, skus } = products.find(
       (p) => p.id === parseInt(id)
     );
