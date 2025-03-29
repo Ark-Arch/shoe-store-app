@@ -105,3 +105,53 @@ Disadvantages
 ##### local storage
 setItem, getItem, removeItem
 **nullish coalescing operator**
+
+SUMMARY
+- use derive state when possible.
+- lift state to share it accross components
+- react state is async and batched.
+
+## HANDLING FORM STATE
+**with functional set state, react deletes the event before we can access it. does this make sense**
+In functional components, setState is asynchronous, meaning React schedules the state update but doesn't immediately apply it. So if you're trying to access the state or event before the update is reflected, you'll likely encounter an issue.
+**Although, with react 17 or newer, the above error might not occur since it no longer pools events**
+### FORM VALIDATION DECISIONS
+1. WHERE do i display the errors
+    by field, at top
+2. WHEN do i display the errors
+    onSubmit, onBlur, onChange
+3. WHEN do i disable submit button - when the form is invalid?
+    until clean, submitting, never
+4. WHEN do i revalidate
+    onSubmit, onCHange, onBlur
+
+WHAT STATE DO WE NEED TO DECLARE (during form validation)
+- touched *what fields have been touched* on fields that there is focus on. **variable: touched**
+- submitted *has the form been submitted* **variable: status**
+- isSubmitting *is the form submission in progress* **variable: status**
+- isValid *is the form currently valid***variable: derived from others**
+- errors *what are the errors for each field***variable: derived from others**
+- dirty *has the form changed***variable: derived from others**
+#### how do i use a single piece of state - status to track if the form has been submitted or is still submitting
+**THE STATE ENUM PATTERN** => FAVOUR ENUMS OVER SEPARATE BOOLEANS
+Implement an enum data type in javscript using an object.
+an enum is simply a list of options.
+handling discrete states as a single piece of state.
+*principle of least priviledge = components should only be provided what they need to get the job done!*
+
+If you have separate booleans, and only one can be true at a time, then consider declaring a single status variable.
+
+DOES MY LOGIC HAVE DISCRETE STATES? then use a single state variable - enum
+
+a more complex solution is A FINITE STATE MACHINE.
+only one state can be active at the same time.
+XState is a very cool library
+XState is a library for implementing finite state machine
+- helps enforce state transitions
+    declare how and when app moves between states
+    prevents invalid transitions.
+- it provides state charts.
+
+BUT THE ENUM PATTERN IS A SIMPLER ALTERNATIVE TO A FINITE STATE MACHINE LIBRARY
+
+*one common mistake with form validation is to declare too much state. most form state can be derived.*

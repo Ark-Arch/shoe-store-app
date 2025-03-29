@@ -1,4 +1,4 @@
-// const baseUrl = process.env.REACT_APP_API_BASE_URL;
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export async function getShippingAddress(userId) {
   return fetch("/shippingAddress/" + userId).then((response) => {
@@ -8,7 +8,8 @@ export async function getShippingAddress(userId) {
 }
 
 export async function saveShippingAddress(address) {
-  return fetch("/shippingAddress", {
+  //return fetch("/shippingAddress", {
+  return fetch(`${baseUrl}/shippingAddress`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
