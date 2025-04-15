@@ -1,11 +1,12 @@
-import React, {useState, useRef} from 'react'
+import React, {useRef} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import useFetch from '../../services/useFetch';
 import Spinner from '../Spinner';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
-export default function Detail({addToCart}){
-    const [sku, setSku] = useState()
+export default function DetailRefs({addToCart}){
+    const skuRef = useRef();
+
     const { id } = useParams()
     const navigate = useNavigate();
     const {data: product, loading, error} = useFetch(`/products/${id}`)
@@ -16,11 +17,12 @@ export default function Detail({addToCart}){
 
     return (
         <div id='detail'>
+            <h1>THIS IS USING THE REF HOOK REFS</h1>
             <h1>{product.name}</h1>
             <p>{product.description}</p>
             <p id='price'>{product.price}</p>
 
-            <select id="size" value={sku} onChange={(e) => setSku(e.target.value)}>
+            <select id="size" ref={skuRef} >
               <option value="">What size</option>
               {product.skus.map((s)=>(
                 <option key={s.sku} value={s.sku}>
@@ -31,9 +33,10 @@ export default function Detail({addToCart}){
 
             <p>
                 <button 
-                    disabled={!sku} 
                     className='btn btn-primary' 
                     onClick={()=>{
+                        const sku = skuRef.current.value
+                        if (!sku) return alert('Select size.');
                         addToCart(id, sku)
                         navigate("/cart")
                     }}>

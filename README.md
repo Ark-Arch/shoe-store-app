@@ -168,8 +168,8 @@ WHEN TO USE REF
 2. when i have state that does not render/ does not change
 3. useful as instance variables in function components
     with refs, i can do the following
-        - keep data between renders
-        - store a pervious value
+        - keep data between renders - to persist data
+        - store a previous value
         - track if the component is mounted
         - hold HTTP request cancel token
         - reference a 3rd party library instance
