@@ -211,3 +211,36 @@ easy to understand and test in solution
 **A REDUCER** *is simply a function that returns a new state when being passed an action!*
 
 useReducer's dispatch function would dispatch actions to the reducer functions
+
+## using useContext
+Do I need context?
+
+implementations as data flows (or application) becomes more complex
+- Plain JS
+- React
+- React Context
+- Redux
+
+**solutions to handling user data needed in two separate components**
+1. solution 1: Lift State but leads to prop drilling
+2. solution 2: React context
+    a) with react context, i can expose global data and functions from a given react component.
+    
+    b) To access this global data, i import 
+    the context in order to consume it in my component.
+    
+    c) For example: the top-level component could declare a **UserContext.Provider** (that holds user data and functions). 
+    
+    d) This user context provider would provide the user data and relevant functions to any components that want to consume it.
+    
+    e) So the two components that needs the user data can then import the user context and thereby access the user's information via the **UserContext.Consumer**.
+
+    f) The context can also expose functions for global usage, then the consumer component can also call a create user function that is actually declared up in the top level component.
+
+3. REDUX: 
+    - with redux, there is a centralized store.
+    - the store can be thought of as a local client side database.
+    - any component can access the redux store.
+    - the redux store can not be changed directly. Instead, I dispatch actions, and those actions update any components that are connected to the Redux store
+
+**Context or Redux can be useful for apps that need to store global data and functions accross the apps. OR for complex data flows. OR for inter-component communication**
