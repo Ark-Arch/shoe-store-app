@@ -155,3 +155,24 @@ XState is a library for implementing finite state machine
 BUT THE ENUM PATTERN IS A SIMPLER ALTERNATIVE TO A FINITE STATE MACHINE LIBRARY
 
 *one common mistake with form validation is to declare too much state. most form state can be derived.*
+
+## USING REFS
+What is Ref?
+1. Reference an HTML element
+2. Store a value that is stable between renders. it persists value between renders
+3. Unlike state, refs value can be mutated directly
+4. Unlike state, refs does not cause re-renders when they change
+
+WHEN TO USE REF
+1. When i need a reference to a DOM element
+2. when i have state that does not render/ does not change
+3. useful as instance variables in function components
+    with refs, i can do the following
+        - keep data between renders
+        - store a pervious value
+        - track if the component is mounted
+        - hold HTTP request cancel token
+        - reference a 3rd party library instance
+        - debounce a call / declare local cache
+        - store flag that something happened
+        - store value used in useEffect
