@@ -176,3 +176,38 @@ WHEN TO USE REF
         - debounce a call / declare local cache
         - store flag that something happened
         - store value used in useEffect
+
+
+## USING useReducer
+- with it, we can declare a function that manages state outside of the component
+useReducers are pure functions!
+it takes a previous state alongside an action, and produces a new state
+it accepts state and action and returns a new state.
+
+there is a dispatch function used to dispatch actions.
+const [state, dispatch] = useReducer(reducer, initialState)
+
+actions are how we change state!. 
+an action has two properties: type and payload. type is the only required property.
+
+reducers => state + action -> a new state
+dispatch: used to dispatch actions
+action => type and payload
+
+WHY USEREDUCERS
+- with it i can extract my logic outside my component. 
+- it is also reusable since it is a pure funciton
+- since it is a pure function, i can test using unit test
+- it is easier to scale
+
+- a pure function depends only on the arguments passed in.
+it depends only on argumnts
+it does not mutate its arguments
+it has no side-effects
+
+they are composable and reusagble
+easy to understand and test in solution
+
+**A REDUCER** *is simply a function that returns a new state when being passed an action!*
+
+useReducer's dispatch function would dispatch actions to the reducer functions
