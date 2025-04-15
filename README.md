@@ -244,3 +244,13 @@ implementations as data flows (or application) becomes more complex
     - the redux store can not be changed directly. Instead, I dispatch actions, and those actions update any components that are connected to the Redux store
 
 **Context or Redux can be useful for apps that need to store global data and functions accross the apps. OR for complex data flows. OR for inter-component communication**
+
+## POPULAR THIRD PARTY STATE LIBRARIES IN TERMS OF STATE
+A) category 1: LOCAL STATE: the goal is to manage state for a component: useState, class state, useReducer, refs, derived state in render
+    third party: XState - enforces state transitions, and provides a state chart, and state logic can be tested in isolation
+B) category 2: GLOBAL STATE: the goal is to share state or functions globally - lift state, context
+    third party options: Redux - state transitions, cache and share local data, middleware for cross-cutting concerns
+C) category 3: SERVER STATE
+D) category 4: IMMUTABLE STATE
+E) category 5: FORM STATE
+**UNDERSTANDING THE ABOVE HELPS ME TO UNDERSTAND HOW TO HANDLE STATE!**
